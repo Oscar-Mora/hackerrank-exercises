@@ -1,0 +1,77 @@
+somos contratados para una empresa de manejo de papeleria y queremos hacer
+la parte de compras de la papeleria
+tenemos diversos proveedores pero no tenemos el control de ellos
+y en ocasiones no sabemos cuanto pagar
+queremos hacer un modulo para poder pagar a los proveedoresen tiempo y forma
+5p:
+PORQUE:
+-PORQUE quieren gestionar sus diversos proveedores
+-PORQUE no tienen el control de ellos
+-PORQUE en ocasiones no saben cuanto se les tiene que pagar
+-PORQUE quieren pagar en tiempo y forma a proveedores
+
+5w:
+-PARA QUE:*Para...
+*poder tener un control de los proveedores
+*controlar las transacciones con cada uno
+*saber cuando y cuanto pagarles
+
+-PORQUE:*Porque...
+*No tienen el control de sus proveedores
+*No llevan un registro adecuado de las transacciones con cada uno
+*No saben cuando y cuanto pagarles
+
+-CUANDO:*Cuando...
+*Cuando exista una transaccion con los proveedores de compras
+*Cuando exista una transaccion con los proveedores de pagos
+
+-COMO:*
+*
+PERFILES:{
+
+*Administrador_:usuario con permisos para agregar Usuarios del departamento de compras y Agregar, borrar, modificar
+o visualizar caracteristicas en el sistema.
+
+*UsuarioCompras_:Usuario con permisos para agregar Proveedores en el sistema y poder Modificar, borrar o visualizar
+registros dentro del modulo compras en el sistema
+}
+
+REGLAS DE NEGOCIO:{
+>>EXISTE_PROVEEDOR->*Identificar si el proveedor se encuentra registrado en el
+
+ sistema
+Realizar Alta de proveedor en caso de no estar en el sistema modulo de compras>>REGISTRO_PROVEEDOR
+tener control de comporas--x
+
+>>REGISTRO_PROVEEDOR->*Para realizar el registro de un proveedor es obligatorio llenar la siguiente información:
+-Nombre de empresa
+-Razón social
+-RFC
+-Domicilio
+-ID
+-Fecha de alta
+-Tipos de producto
+
+>>TRANSACCION_PROVEEDOR->*Para realizar una transacción se debe:
+1.-Identificar Tipo de transaccion (compra(credito|contado)|pago(efectivo|transferencia))
+2.-Identificar y Asignar ID_proveedor
+3.-Asignar cantidad de productos a comprar
+4.-Asignar precio unitario
+5.-Fecha de compra
+Sí compra_credito ? {fecha promesa de pago}
+
+}
+
+-------------
+manejo de las compra
+control de proveedores
+poder pagar a proveedores en tiempo y forma
+--------------
+Casos de uso:{
+1.-INGRESAR AL SISTEMA.
+Dado que el usuario cuenta con permisos para entrar al sistema
+Cuando el usuario ingrese su usuario y contraseña en la pantalla principal
+Entonces el usuario podrá ingresar a la pantalla principal modulo Compras 
+2.-REGISTRO DE PROVEEDORES.
+Dado que el usuario cuenta con permisos para ingresar al sistema y pueda entrar al modulo compras
+Cuando el usuario
